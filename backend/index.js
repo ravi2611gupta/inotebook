@@ -11,9 +11,25 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+
+// if you want to use req.body than you have to use a middleware (express.json)
+app.use(express.json())
+// available routes
+app.use('/api/auth', require('./routes/auth'))
+app.use('/api/notes', require('./routes/notes'))
+
+
+// app.get('/', (req, res) => {
+//     res.send('Hello World!')
+// })
+
+// app.get('/api/v1/login', (req, res) => {
+//     res.send('this is login!')
+// })
+
+// app.get('/api/v1/signup', (req, res) => {
+//     res.send('this is signup!')
+// })
 
 app.listen(port, () => {
     console.log(`Example app listening on port  http://localhost:${port}`)
