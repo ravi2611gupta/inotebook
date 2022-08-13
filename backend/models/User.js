@@ -23,4 +23,6 @@ const userSchema = new Schema({
 
 //   default:date.now ❌ default:Date.now ✅ will not work D should be capital (case-sensitive) 👆🏽
 
-  module.exports = mongoose.model('user', userSchema)
+const User = mongoose.model('user', userSchema)
+// User.createIndexes(); //because we don't want to create a new index named as email that's why we comment it out
+module.exports = User

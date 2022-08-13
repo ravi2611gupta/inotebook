@@ -9,7 +9,8 @@ connectToMongo();
 // express js boilerplate start
 const express = require('express')
 const app = express()
-const port = 3000
+// const port = 3000
+const port = 5000
 
 
 // if you want to use req.body than you have to use a middleware (express.json)
