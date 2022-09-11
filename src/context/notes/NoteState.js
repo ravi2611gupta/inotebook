@@ -74,7 +74,7 @@ const NoteState = (props) => {
        }
      });
      const json = await response.json();
-    //  console.log(json);
+     console.log(json);
      // API Call ⤴️⤴️⤴️⤴️
 
     // todo API call
@@ -100,7 +100,7 @@ const NoteState = (props) => {
       body: JSON.stringify({ title, description, tag }),
     });
     const json = await response.json();
-    // console.log(json);
+    console.log(json);
     // API Call ⤴️⤴️⤴️⤴️
 
     // logic to edit in client
