@@ -1,16 +1,18 @@
 import React, {useContext, useState} from "react";
 import noteContext from '../context/notes/noteContext'
 
-function Addnote() {
+function Addnote(props) {
 
     const context = useContext(noteContext);
     const { addNote } = context;
-    const [note, setNote] = useState({title:"", description:"", tag:"default"})
+    const [note, setNote] = useState({title:"", description:"", tag:""})
 
     const handleClick = (e)=>{
         e.preventDefault();
         // addNote(note)
         addNote(note.title, note.description, note.tag)
+        setNote({title:"", description:"", tag:""})
+        props.showAlert("Added Successfully.", "success")
     }
 
     const changeListener = (e)=>{
@@ -30,13 +32,17 @@ function Addnote() {
           <form>
             <div className="mb-3">
               <label htmlFor="title" className="form-label">Title</label>
-              <input type="text" className="form-control" name="title" id="title" onChange={changeListener}/>
+              <input type="text" className="form-control" name="title"  value={note.title} id="title" minLength={5} required onChange={changeListener}/>
             </div>
             <div className="mb-3">
               <label htmlFor="description" className="form-label">Description</label>
-              <input type="text" onChange={changeListener} className="form-control" id="description" name="description"/>
+              <input type="text" onChange={changeListener} value={note.description} className="form-control" minLength={5} required id="description" name="description"/>
             </div>
-            <button type="submit" onClick={handleClick} className="btn btn-primary">Add Note</button>
+            <div className="mb-3">
+              <label htmlFor="tag" className="form-label">Tag</label>
+              <input type="text" onChange={changeListener} value={note.tag} className="form-control" minLength={3} required id="tag" name="tag"/>
+            </div>
+            <button type="submit" disabled={note.title.length<5 || note.description.length<5 || note.tag.length<3} onClick={handleClick} className="btn btn-primary">Add Note</button>
           </form>
         </div>
       </div>

@@ -9,6 +9,10 @@ connectToMongo();
 // express js boilerplate start
 const express = require('express')
 const app = express()
+const cors = require('cors')
+
+app.use(cors())
+
 // const port = 3000
 const port = 5000
 
